@@ -1,0 +1,15 @@
+# struct demo: build and read a small binary packet header.
+import "./main.ecko"
+st = main
+
+# magic (u16), version (u8), length (u32), flags (i8) - big-endian.
+fmt = ">HBIb"
+header = st.pack(fmt, [43981, 1, 1024, -1])  # 0xABCD, 1, 1024, -1
+sz = st.sizeof(fmt)
+print("packed {len(header)} bytes (sizeof = {sz})")
+
+fields = st.unpack(fmt, header)
+print("magic:   {fields[0]}")
+print("version: {fields[1]}")
+print("length:  {fields[2]}")
+print("flags:   {fields[3]}")

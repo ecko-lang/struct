@@ -1,0 +1,10 @@
+{
+  "name": "struct",
+  "version": "0.1.0",
+  "entrypoint": "main.ecko",
+  "description": "Pack and unpack binary data with a struct-style format string, over the bytes type. Pure - no capabilities.",
+  "author": "Sean Nieuwoudt <sean@underwulf.com>",
+  "license": "MIT",
+  "capabilities": [],
+  "dependencies": {}
+}
