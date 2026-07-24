@@ -3,13 +3,13 @@ import std.test
 import "../main.ecko"
 st = main
 
-test.case("pack/unpack round-trip, big-endian", || {
+test.case("pack/unpack round-trip, big-endian", fn() {
     b = st.pack(">IHB", [65536, 256, 7])
     test.eq(len(b), 7)  # 4 + 2 + 1
     test.eq(st.unpack(">IHB", b), [65536, 256, 7])
 })
 
-test.case("endianness controls byte order", || {
+test.case("endianness controls byte order", fn() {
     be = st.pack(">H", [258])  # 0x0102
     le = st.pack("<H", [258])
     test.eq([be[0], be[1]], [1, 2])
@@ -18,7 +18,7 @@ test.case("endianness controls byte order", || {
     test.eq(st.pack("H", [258]), be)
 })
 
-test.case("signed values round-trip at every width", || {
+test.case("signed values round-trip at every width", fn() {
     test.eq(st.unpack(">b", st.pack(">b", [-1])), [-1])
     test.eq(st.unpack(">h", st.pack(">h", [-1000])), [-1000])
     test.eq(st.unpack(">i", st.pack(">i", [-70000])), [-70000])
@@ -26,26 +26,26 @@ test.case("signed values round-trip at every width", || {
     test.eq(st.unpack("<i", st.pack("<i", [-70000])), [-70000])
 })
 
-test.case("unsigned bytes keep their full range", || {
+test.case("unsigned bytes keep their full range", fn() {
     test.eq(st.unpack(">B", st.pack(">B", [255])), [255])
     test.eq(st.unpack(">B", bytes([200])), [200])
     test.eq(st.unpack(">H", bytes([255, 255])), [65535])
 })
 
-test.case("a pad byte is a skipped zero", || {
+test.case("a pad byte is a skipped zero", fn() {
     b = st.pack(">BxB", [1, 2])
     test.eq(len(b), 3)
     test.eq([b[0], b[1], b[2]], [1, 0, 2])
     test.eq(st.unpack(">BxB", b), [1, 2])
 })
 
-test.case("sizeof sums the widths", || {
+test.case("sizeof sums the widths", fn() {
     test.eq(st.sizeof(">IHBq"), 15)  # 4 + 2 + 1 + 8
     test.eq(st.sizeof("<hh"), 4)
     test.eq(st.sizeof(">BxB"), 3)
 })
 
-test.case("an unknown format code raises", || {
+test.case("an unknown format code raises", fn() {
     caught = try { st.pack(">Z", [1]) } catch (e) { get(e, "kind") }
     test.eq(caught, "value")
 })

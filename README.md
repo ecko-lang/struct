@@ -1,17 +1,16 @@
-# struct
+# Struct - Ecko Std Lib Package
 
 Pack and unpack binary data with a struct-style format string, for
-[Ecko](https://ecko.sh) — written in Ecko, over the `bytes` type. Handy for
+[Ecko](https://ecko.sh) - written in Ecko, over the `bytes` type. Handy for
 binary file formats and wire protocols (the kind of framing the redis/postgres
 clients otherwise hand-roll).
 
-No native code, no capabilities — pure `bytes` and the word operators
-(`band`/`shl`/`shr`/`bor`).
+Built on `bytes` and the word operators (`band`/`shl`/`shr`/`bor`).
 
 ## Install
 
 ```bash
-ecko add https://github.com/ecko-sh/struct
+ecko get github.com/ecko-sh/struct
 ```
 
 ## Usage
@@ -56,7 +55,7 @@ Lowercase is signed, uppercase unsigned.
 
 - Signed values round-trip correctly at every width (two's complement).
 - Ecko's `Int` is `i64`, so a `Q` (uint64) value above `i64::MAX` comes back
-  negative — its raw bit pattern. This is the one place the abstraction leaks.
+  negative - its raw bit pattern. This is the one place the abstraction leaks.
 - An unknown format code raises a kind-`"value"` error.
 
 ## Testing
@@ -69,4 +68,4 @@ Offline and deterministic. `example.ecko` builds and reads a small packet header
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
