@@ -78,7 +78,7 @@ fn read_int(data, offset, nbytes, big, signed) {
     } else { v }
 }
 
-# pack(fmt, values) -> bytes.
+## pack(fmt, values) -> bytes.
 export fn pack(fmt, values) {
     p = parse_fmt(fmt)
     mut out = bytes([])
@@ -92,7 +92,7 @@ export fn pack(fmt, values) {
     out
 }
 
-# unpack(fmt, data) -> [values].
+## unpack(fmt, data) -> [values].
 export fn unpack(fmt, data) {
     p = parse_fmt(fmt)
     mut out = []
@@ -106,7 +106,7 @@ export fn unpack(fmt, data) {
     out
 }
 
-# sizeof(fmt) -> total byte count.
+## sizeof(fmt) -> total byte count.
 export fn sizeof(fmt) {
     p = parse_fmt(fmt)
     mut total = 0
