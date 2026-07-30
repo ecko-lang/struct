@@ -10,7 +10,7 @@ Built on `bytes` and the word operators (`band`/`shl`/`shr`/`bor`).
 ## Install
 
 ```bash
-ecko get github.com/ecko-sh/struct
+ecko get github.com/ecko-lang/struct
 ```
 
 ## Usage
